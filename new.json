@@ -1,0 +1,58 @@
+{
+    "order": {
+        "id": 9,
+        "created_date": "2023-08-18T22:39:16.135702",
+        "updated_date": "2023-08-18T22:39:16.135702",
+        "title": "New Order",
+        "items": [
+            {
+                "order_id": 7,
+                "name": "Item 1",
+                "price": 10.99,
+                "number": 1
+            },
+            {
+                "order_id": 8,
+                "name": "Item 2",
+                "price": 19.99,
+                "number": 2
+            }
+        ]
+    }
+}
+
+curl -X POST http://localhost:8080/orders -H 'Content-Type: application/json' -d '{
+    "title": "AAAAAAAA",
+    "items": [
+      {
+        "name": "SSSIIIIIUU",
+        "price": 15.78,
+        "number": 1
+      },
+      {
+        "name": "BBBBBBBBBBBB",
+        "price": 1890,
+        "number": 2
+      }
+    ]
+}'
+
+curl -X PUT http://0.0.0.0:8080/orders/1 -H "Content-Type: application/json" -d '{
+    "title": "Updated Order Title",
+    "items": [
+        {
+            "name": "Updated Item 1",
+            "price": 15.99,
+            "number": 4
+        },
+        {
+            "name": "Updated Item 2",
+            "price": 7.99,
+            "number": 1
+        }
+    ]
+}' 
+
+сurl -X DELETE http://0.0.0.0:8080/orders/1
+
+curl http://0.0.0.0:8080/stats
