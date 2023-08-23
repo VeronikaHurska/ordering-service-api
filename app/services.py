@@ -67,7 +67,7 @@ class OrderService:
         """
         result = db.execute_query(query)
         
-        # Organize the data into a dictionary
+        
         order_data = {}
         for row in result:
             order_id, created_date, updated_date, title,  item_id, item_order_id, item_name, item_price, item_number = row
@@ -166,12 +166,11 @@ class ItemService():
         if not (item_name and item_price and item_number):
             raise HTTPException(status_code=400, detail="Invalid item data")
 
-        # Check if the order exists
         existing_order = OrderService.get_order_by_id(order_id, db)
         if existing_order is None:
             raise HTTPException(status_code=404, detail="Order not found")
 
-        # Insert the item into the database
+       
         insert_item_query = "INSERT INTO items (order_id, name, price, number) VALUES (%s, %s, %s, %s) RETURNING id;"
         item_result = db.execute_query(insert_item_query, (order_id, item_name, item_price, item_number))
         item_id = item_result[0][0]
